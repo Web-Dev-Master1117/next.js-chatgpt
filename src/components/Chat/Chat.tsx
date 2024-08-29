@@ -23,7 +23,7 @@ const Chat = ({ messages }: Props) => {
   return (
     <main
       ref={scrollableContentRef}
-      className="custom-scrollbar flex flex-1 flex-col gap-4 overflow-y-scroll bg-[#121212] rounded-lg "
+      className="custom-scrollbar flex flex-1 flex-col gap-4 overflow-y-scroll bg-[#121212] rounded-lg p-5"
     >
       {messages.map((message) => (
         <Message key={message.id} sender={message.creator}>
