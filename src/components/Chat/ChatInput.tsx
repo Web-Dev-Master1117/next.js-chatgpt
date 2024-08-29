@@ -1,22 +1,24 @@
-import {Send, X} from 'lucide-react'
-import {ChangeEvent, useRef} from 'react'
+import { Send, X } from "lucide-react";
+import { ChangeEvent, useRef } from "react";
 
-import {cn} from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
-import {Button} from '../ui/button'
-import {Textarea} from '../ui/textarea'
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 
 type Props = {
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void
-  value: string
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  disabled?: boolean
-}
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  value: string;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  disabled?: boolean;
+};
 
-const ChatInput = ({onChange, value, onSubmit, disabled}: Props) => {
-  const formRef = useRef<HTMLFormElement>(null)
+const ChatInput = ({ onChange, value, onSubmit, disabled }: Props) => {
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <form ref={formRef} onSubmit={onSubmit}>
@@ -30,19 +32,23 @@ const ChatInput = ({onChange, value, onSubmit, disabled}: Props) => {
             rows={value.split(`\n`)?.length || 1}
             onChange={onChange}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault()
+              if (e.key === "Enter") {
+                e.preventDefault();
 
-                if (e.shiftKey) onChange({target: {value: `${value}\n`}} as any)
-                else formRef.current?.requestSubmit()
+                if (e.shiftKey)
+                  onChange({ target: { value: `${value}\n` } } as any);
+                else formRef.current?.requestSubmit();
 
-                return
+                return;
               }
             }}
           />
         </div>
         <Button
-          className={cn('gap-2', disabled && 'bg-neutral-300')}
+          className={cn(
+            "bg-[#2b5278] text-white gap-2",
+            disabled && "bg-neutral-300"
+          )}
           type="submit"
           disabled={disabled}
         >
@@ -50,7 +56,7 @@ const ChatInput = ({onChange, value, onSubmit, disabled}: Props) => {
         </Button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default ChatInput
+export default ChatInput;
