@@ -3,7 +3,7 @@ type AvatarProps = {
 };
 const Avatar = ({ children }: AvatarProps) => {
   return (
-    <div className="items-center justify-center rounded-full bg-transparent">
+    <div className="items-center justify-center rounded-full bg-transparent pt-4">
       {children}
     </div>
   );

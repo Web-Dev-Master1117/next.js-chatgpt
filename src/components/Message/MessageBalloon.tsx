@@ -1,5 +1,7 @@
 "use client";
 
+import { useSession } from "next-auth/react";
+
 import { Copy, Check, Download } from "lucide-react";
 import { Children, memo, useState } from "react";
 import Markdown from "react-markdown";
@@ -148,6 +150,7 @@ const BlockQuote = ({ children, ...props }: any) => {
 };
 
 const MessageBalloon = ({ sender, message, date }: MessageBalloonProps) => {
+  const { data: session } = useSession();
   return (
     <div
       className={cn(
@@ -157,19 +160,21 @@ const MessageBalloon = ({ sender, message, date }: MessageBalloonProps) => {
       )}
     >
       <Label className="text-xs font-semibold text-white">
-        {sender === "AI" ? "AI Bot" : "Me"}
+        {sender === "AI" ? "AI Bot" : session?.user?.name || "Me"}
         {formatDate(date)}
       </Label>
-      <Label className="text-base text-white break-words overflow-hidden">
-        <Markdown
-          components={{
-            pre: ({ node, ...props }) => <Pre {...props} />,
-            blockquote: ({ node, ...props }) => <BlockQuote {...props} />,
-          }}
-          rehypePlugins={[() => rehypeHighlight({ detect: true })]}
-        >
-          {message}
-        </Markdown>
+      <Label className="text-base text-white break-words overflow-hidden ">
+        <pre className="whitespace-pre-wrap">
+          <Markdown
+            components={{
+              pre: ({ node, ...props }) => <Pre {...props} />,
+              blockquote: ({ node, ...props }) => <BlockQuote {...props} />,
+            }}
+            rehypePlugins={[() => rehypeHighlight({ detect: true })]}
+          >
+            {message}
+          </Markdown>
+        </pre>
       </Label>
     </div>
   );
