@@ -6,13 +6,13 @@ ChatGPT 4.0 Chatbot
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`NEXTAUTH_URL=`
-`NEXTAUTH_SECRET=`
+`NEXTAUTH_URL=
+NEXTAUTH_SECRET=
 
-`GITHUB_CLIENT_ID=`
-`GITHUB_CLIENT_SECRET=`
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
 
-`OPENAI_API_KEY=`
+OPENAI_API_KEY=`
 
 ## Run Locally
 
